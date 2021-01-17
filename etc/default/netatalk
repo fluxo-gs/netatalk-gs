@@ -1,0 +1,20 @@
+# netatalk-gs configuration
+# netatalk-2.2.6
+
+ATALK_NAME=netatalk-gs
+
+# guest mode is the only supported mode currently
+# AFPD_UAMLIST="-U uams_guest.so,uams_randnum.so,uams_clrtxt.so"
+AFPD_UAMLIST="-U uams_guest.so"
+
+#### Set the id of the guest user when using uams_guest.so
+AFPD_GUEST=nobody
+
+AFPD_DEFAULT_SHARENAME=share.afp
+AFPD_MAX_CLIENTS=20
+
+#### Set any additional args to afpd
+AFPD_ARGS="-F /etc/netatalk/afpd.conf"
+
+#### config for cnid_metad. log to /dev/null
+CNID_CONFIG="-l log_info -f /dev/null"

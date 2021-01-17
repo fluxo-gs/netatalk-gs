@@ -1,0 +1,25 @@
+#!/bin/bash -x
+
+set -e
+
+# Read in netatalk configuration.
+if [ -f /etc/default/netatalk ]; then
+    . /etc/default/netatalk
+fi
+
+AFPD_SHARE=${sharename:-$AFPD_DEFAULT_SHARENAME}
+
+cat > /etc/netatalk/AppleVolumes.default << EOF
+:DEFAULT: options:ro,usedots,invisibledots
+/share/afp "$AFPD_SHARE"
+EOF
+
+# Start Netatalk servers.
+
+echo "starting cnid_metad .."
+/usr/sbin/cnid_metad $CNID_CONFIG
+
+# start afpd in non-forking mode so debug is sent to docker stdout
+echo "starting afpd in the foreground.."
+/usr/sbin/afpd $AFPD_UAMLIST -g $AFPD_GUEST -c $AFPD_MAX_CLIENTS \
+  $AFPD_ARGS -d
