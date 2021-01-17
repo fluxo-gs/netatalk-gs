@@ -13,12 +13,12 @@ The default configuration of netatalk-gs provides a share called share.afp publi
 Specify the path you want to share to your GS for [local path]:
 
 ```bash
-docker run -d -p 548:548 -v [local path]:/share/afp table2eng/netatalk-gs:1.0
+docker run -d -p 548:548 -v [local path]:/share/afp table2eng/netatalk-gs:latest
 ```
 You can customize the share name using *-e sharename=*
 
 ```bash
-docker run -d -p 548:548 -e sharename=mystuff -v [local path]:/share/afp table2eng/netatalk-gs:1.0
+docker run -d -p 548:548 -e sharename=mystuff -v [local path]:/share/afp table2eng/netatalk-gs:latest
 ```
 
 Note that sharename should comply to the AFP v2.2 naming standards. 
