@@ -42,6 +42,16 @@ You will need to select the arrow in the upper right of the AFP Mounter window a
 - Verify that your firewall allows TCP port 548 from your GS
 - Use docker tools to view the logs from the container (docker ps, docker logs)
 
+## Building
+
+This works on pi (armv7l). You can build it locally via
+
+```bash
+git clone https://github.com/fluxo-gs/netatalk-gs
+cd netatalk-gs
+docker build -t table2eng/netatalk-gs:latest .
+```
+
 ## BUGS
 
 The share will disconnect from an Apple IIgs when attempting to transfer a file larger than 600k. This may be a memory limitation on my hardware, or an issue with AFP 2.2 vs. 2.0. 
@@ -63,4 +73,6 @@ Contributions to this system are welcomed via GitHub Issues or PRs as long as th
 It should be possible to support AFP 2.0, and support for EtherTalk and similar could also be made to work, athough I lack any equipment with which to test those.
 
 It would also be nice to support usernames and passwords, although they would be limited to randnum exchange and thus considered insecure. 
+
+Add multi-architecture dockerhub builds to include ARM. Currently the dockerhub build only creates an x86 image.
 
